@@ -74,7 +74,8 @@ public class MetricSpout extends KafkaSpout {
       metric.dimensions = EMPTY_DIMENSIONS;
     }
     // get unique identifier, required for storm
-    final String uId = Long.toString(Thread.currentThread().getId()) +  Long.toString(ThreadLocalRandom.current().nextInt());
+    final String uId = Long.toString(Thread.currentThread().getId())
+                       + Long.toString(ThreadLocalRandom.current().nextInt());
 
     collector.emit(new Values(new TenantIdAndMetricName(tenantId, metricEnvelope.metric
         .definition().name), metricEnvelope.creationTime, metric), uId);
